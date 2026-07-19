@@ -1,0 +1,382 @@
+Shader "ArcToon/Sample/ZZZEye"
+{
+    Properties
+    {
+        // ------------------------ general
+        _BaseMap ("Texture", 2D) = "white" {}
+        _BaseColor ("Color", Color) = (0.5, 0.5, 0.5, 1.0)
+
+        [NoScaleOffset] _NormalMap ("Normals", 2D) = "bump" {}
+        _NormalScale ("Normal Scale", Range(0, 1)) = 1
+
+        _SpecularMask ("Parallax Specular Map", 2D) = "white" {}
+        [Enum(UV0, 0, UV1, 1)]
+        _SpecularMaskUV ("Parallax Specular Map UV", Integer) = 1
+        [Enum(RGB, 0, R, 1, G, 2, B, 3, A, 4)]
+        _SpecularMaskChannel ("Specular Mask Channel", Integer) = 0
+
+        _ParallaxSensitivity ("Parallax Sensitivity", Range(0, 1)) = 0.1
+        _ParallaxOffset ("Parallax Offset", Range(0, 1)) = 0
+
+        _Cutoff ("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
+
+        [Toggle(_RECEIVE_SHADOWS)] _ReceiveShadows ("Receive Shadows", Float) = 1
+        [Toggle(_RECEIVE_FRINGE_SHADOWS)] _ReceiveFringeShadows ("Receive Fringe Shadows", Float) = 0
+        [Enum(ArcToon.Editor.ShaderEditor.ShadowCasterOption)] _Shadows ("Shadow Caster Option", Float) = 0
+
+        [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull Mode", Float) = 1
+        [Enum(UnityEngine.Rendering.BlendMode)] _SrcBlend ("Source Blend Factor", Float) = 1
+        [Enum(UnityEngine.Rendering.BlendMode)] _DstBlend ("Destination Blend Factor", Float) = 0
+        [Enum(Off, 0, On, 1)] _ZWrite ("Z Write Mode", Float) = 1
+
+        _StencilEnabled("Stencil Enabled", Float) = 1
+        _Stencil("Stencil Ref ID", Float) = 1
+        _StencilWriteMask("Stencil Write Mask", Float) = 3
+        _StencilReadMask("Stencil Read Mask", Float) = 3
+
+        // ------------------------ PBR
+        [NoScaleOffset] _MetallicMap ("Metallic Map", 2D) = "white" {}
+        [Enum(R, 0, G, 1, B, 2, A, 3)] _MetallicMapChannel ("Metallic Channel", Integer) = 1
+        [NoScaleOffset] _RoughnessMap ("Roughness Map", 2D) = "white" {}
+        [Enum(R, 0, G, 1, B, 2, A, 3)] _RoughnessMapChannel ("Roughness Channel", Integer) = 0
+        [NoScaleOffset] _OcclusionMap ("Occlusion Map", 2D) = "white" {}
+        [Enum(R, 0, G, 1, B, 2, A, 3)] _OcclusionMapChannel ("Occlusion Channel", Integer) = 2
+
+        _Roughness ("Roughness", Range(0, 1)) = 1
+        _Metallic ("Metallic", Range(0, 1)) = 0.8
+        _Occlusion ("Occlusion", Range(0, 1)) = 1
+        _Fresnel ("Fresnel", Range(0, 1)) = 1
+
+        [NoScaleOffset] _EmissionMap ("Emission", 2D) = "white" {}
+        [HDR] _EmissionColor ("Emission Color", Color) = (0.0, 0.0, 0.0, 0.0)
+
+        // ------------------------ Toon
+        [NoScaleOffset] _RampSet ("Ramp Set", 2D) = "white" {}
+
+        _DirectLightAttenOffset ("Direct Attenuation Offset", Range(0, 1)) = 0.5
+        _DirectLightAttenSmoothNew ("Direct Attenuation Smooth New", Range(0, 1)) = 0.5
+
+        _DirectLightSpecOffset ("Direct Specular Offset", Range(0, 1)) = 0.5
+        _DirectLightSpecSmooth ("Direct Specular Smooth", Range(0, 1)) = 0.5
+
+        _OutlineColor0 ("Outline Color 0", Color) = (0.1, 0.1, 0.1, 1.0)
+        _OutlineColor1 ("Outline Color 1", Color) = (0.1, 0.1, 0.1, 1.0)
+        _OutlineColor2 ("Outline Color 2", Color) = (0.1, 0.1, 0.1, 1.0)
+        _OutlineColor3 ("Outline Color 3", Color) = (0.1, 0.1, 0.1, 1.0)
+        _OutlineColor4 ("Outline Color 4", Color) = (0.1, 0.1, 0.1, 1.0)
+        _OutlineColor5 ("Outline Color 5", Color) = (0.1, 0.1, 0.1, 1.0)
+        _OutlineColor6 ("Outline Color 6", Color) = (0.1, 0.1, 0.1, 1.0)
+        _OutlineColor7 ("Outline Color 7", Color) = (0.1, 0.1, 0.1, 1.0)
+        _OutlineScale ("Outline Scale", Range(0, 1)) = 0.1
+        [Enum(ArcToon.Editor.ShaderEditor.SmoothNormalSource)]
+        _SmoothNormalSource ("Smooth Normal Source", Integer) = 1
+        [Enum(ArcToon.Editor.ShaderEditor.SmoothNormalDecoder)]
+        _SmoothNormalDecoder ("Smooth Normal Decoder", Integer) = 1
+        [Enum(ArcToon.Editor.ShaderEditor.WidthControlMode)]
+        _WidthControlMode ("Width Control Mode", Integer) = 1
+        [Enum(R, 0, G, 1, B, 2, A, 3)]
+        _WidthMaskChannel ("Width Mask Channel", Integer) = 3
+
+        _RimScale ("Screen Space Rim Light Scale", Range(0, 1)) = 0.5
+        _RimWidth ("Screen Space Rim Light Width", Range(0, 1)) = 0.5
+        _RimDepthBias ("Screen Space Rim Light Depth Bias", Float) = 3
+
+        _HighlightType ("Override Highlight Type", Integer) = 0
+        _SpecGloss ("Spec Gloss", Range(0, 1)) = 0.2
+        _SpecScale ("Spec Scale", Range(0, 1)) = 0.6
+
+        _TangentShiftMap ("Tangent Shift Map", 2D) = "white" {}
+        [Enum(UV0, 0, UV1, 1)]
+        _TangentShiftMapUV ("Tangent Shift Map UV", Integer) = 1
+        _TangentShiftOffset ("Tangent Shift Offset", Range(-1, 1)) = 0
+
+        // ------------------------ SDF face (spec pass)
+        _LightMapSDF ("SDF Light Map", 2D) = "white" {}
+        [Enum(UV0, 0, UV1, 1)]
+        _LightMapSDFSourceUV ("SDF Light Map UV Source", Integer) = 1
+        _ShadowOffsetSDF ("SDF Light Map Attenuation Offset", Range(-1, 1)) = 0
+        _FaceVector ("Face Vector", Vector) = (0, 0, 1, 0)
+        [Toggle(_SDF_LIGHT_MAP_SPEC)] _LightMapSpecularSDFToggle ("Use SDF Light Map Specular", Float) = 0
+        _NoseSpecularStrengthSDF ("SDF Light Map Nose Specular Strength", Range(0, 1)) = 0.5
+        _NoseSpecularSmoothSDF ("SDF Light Map Nose Specular Smooth", Range(0, 1)) = 0.1
+
+        // ------------------------ Eye refraction / matcap (pupil pass)
+        _RefractionType ("Refraction Type", Integer) = 1
+        _AnteriorChamberHeight ("Anterior Chamber Height", Range(0, 1)) = 0.2
+        _RefractionEdge ("Refraction Edge", Range(0, 1)) = 0.7
+        _RefractionSmooth ("Refraction Edge Smooth", Range(0, 1)) = 0.4
+        _ParallaxFlipSignX ("Parallax Flip Sign X", Integer) = -1
+        _ParallaxFlipSignY ("Parallax Flip Sign Y", Integer) = 1
+
+        _MatCap ("MatCap", 2D) = "white" {}
+        _MatCapStrength ("MatCap Strength", Range(0, 1)) = 0.2
+        _MatCapBlendMode ("MatCap Blend Mode", Integer) = 1
+
+        [HideInInspector] _PerObjectShadowCasterID("Per Object Shadow Caster ID", Float) = -1
+
+        // ------------------------ Region ID
+        // ZZZ eyes: one mesh, three parts tagged by vertex color G.
+        // Region -> part mapping is fixed in the passes below: pupil = 1, spec = 2, shadow = 0.
+        _RegionCount ("Region Count", Integer) = 1
+        [Enum(R, 0, G, 1, B, 2, A, 3)]
+        _RegionIDChannel ("Region ID Channel", Integer) = 0
+        [NoScaleOffset] _RegionIDMap ("Region ID Map", 2D) = "black" {}
+
+        // for hard-coded unity capacity
+        [HideInInspector] _MainTex("Texture for Lightmap", 2D) = "white" {}
+        [HideInInspector] _Color("Color for Lightmap", Color) = (0.5, 0.5, 0.5, 1.0)
+    }
+    SubShader
+    {
+        Tags
+        {
+            "Queue" = "Geometry+10"
+        }
+
+        HLSLINCLUDE
+        // --- pre-CBUFFER Library (dependency-free) ---
+        #include "Packages/com.arctoon.render-pipeline/ShaderLibrary/Input/SurfaceSampling.hlsl"
+        #include "Packages/com.arctoon.render-pipeline/ShaderLibrary/RegionID.hlsl"
+        #include "Packages/com.arctoon.render-pipeline/ShaderLibrary/Light/ToonLighting.hlsl"
+
+        // --- per-material CBUFFER (union of pupil + spec needs, plus the three region targets) ---
+        UNITY_INSTANCING_BUFFER_START(UnityPerMaterial)
+            UNITY_DEFINE_INSTANCED_PROP(float4, _BaseMap_ST)
+            UNITY_DEFINE_INSTANCED_PROP(float4, _BaseColor)
+            UNITY_DEFINE_INSTANCED_PROP(float, _NormalScale)
+            UNITY_DEFINE_INSTANCED_PROP(float, _Cutoff)
+
+            UNITY_DEFINE_INSTANCED_PROP(float, _Metallic)
+            UNITY_DEFINE_INSTANCED_PROP(float, _Roughness)
+            UNITY_DEFINE_INSTANCED_PROP(int, _RoughnessSource)
+            UNITY_DEFINE_INSTANCED_PROP(float, _Occlusion)
+            UNITY_DEFINE_INSTANCED_PROP(float, _Fresnel)
+            UNITY_DEFINE_INSTANCED_PROP(int, _MetallicMapChannel)
+            UNITY_DEFINE_INSTANCED_PROP(int, _RoughnessMapChannel)
+            UNITY_DEFINE_INSTANCED_PROP(int, _OcclusionMapChannel)
+            UNITY_DEFINE_INSTANCED_PROP(float4, _EmissionColor)
+
+            UNITY_DEFINE_INSTANCED_PROP(float, _DirectLightAttenOffset)
+            UNITY_DEFINE_INSTANCED_PROP(float, _DirectLightAttenSmoothNew)
+
+            UNITY_DEFINE_INSTANCED_PROP(float, _RimScale)
+            UNITY_DEFINE_INSTANCED_PROP(float, _RimWidth)
+            UNITY_DEFINE_INSTANCED_PROP(float, _RimDepthBias)
+
+            UNITY_DEFINE_INSTANCED_PROP(float, _SpecGloss)
+            UNITY_DEFINE_INSTANCED_PROP(float, _SpecScale)
+            UNITY_DEFINE_INSTANCED_PROP(int, _SpecularMaskUV)
+            UNITY_DEFINE_INSTANCED_PROP(int, _SpecularMaskChannel)
+            UNITY_DEFINE_INSTANCED_PROP(float, _ParallaxSensitivity)
+            UNITY_DEFINE_INSTANCED_PROP(float, _ParallaxOffset)
+            UNITY_DEFINE_INSTANCED_PROP(int, _TangentShiftMapUV)
+            UNITY_DEFINE_INSTANCED_PROP(float, _TangentShiftOffset)
+
+            UNITY_DEFINE_INSTANCED_PROP(float4, _FaceVector)
+            UNITY_DEFINE_INSTANCED_PROP(int, _LightMapSDFSourceUV)
+            UNITY_DEFINE_INSTANCED_PROP(float, _ShadowOffsetSDF)
+            UNITY_DEFINE_INSTANCED_PROP(float, _NoseSpecularStrengthSDF)
+            UNITY_DEFINE_INSTANCED_PROP(float, _NoseSpecularSmoothSDF)
+            REGION_PROP_DECLARE(float, _SDFLightMapRegionEnabled)
+
+            UNITY_DEFINE_INSTANCED_PROP(float, _AnteriorChamberHeight)
+            UNITY_DEFINE_INSTANCED_PROP(float, _RefractionEdge)
+            UNITY_DEFINE_INSTANCED_PROP(float, _RefractionSmooth)
+            UNITY_DEFINE_INSTANCED_PROP(int, _ParallaxFlipSignX)
+            UNITY_DEFINE_INSTANCED_PROP(int, _ParallaxFlipSignY)
+            UNITY_DEFINE_INSTANCED_PROP(float, _MatCapStrength)
+            UNITY_DEFINE_INSTANCED_PROP(int, _MatCapBlendMode)
+
+            UNITY_DEFINE_INSTANCED_PROP(float, _PerObjectShadowCasterID)
+
+            UNITY_DEFINE_INSTANCED_PROP(int, _RegionCount)
+            UNITY_DEFINE_INSTANCED_PROP(int, _RegionIDChannel)
+        UNITY_INSTANCING_BUFFER_END(UnityPerMaterial)
+
+        // --- post-CBUFFER Interface (dependency-bearing) ---
+        #include "Packages/com.arctoon.render-pipeline/Shaders/Interface/SurfaceInterface.hlsl"
+        #include "Packages/com.arctoon.render-pipeline/Shaders/Interface/HairSpecInterface.hlsl"
+        #include "Packages/com.arctoon.render-pipeline/Shaders/Interface/SDFFaceInterface.hlsl"
+        #include "Packages/com.arctoon.render-pipeline/Shaders/Interface/EyeInterface.hlsl"
+        #include "Packages/com.arctoon.render-pipeline/Shaders/Interface/ToonLightingInterface.hlsl"
+        ENDHLSL
+
+        UsePass "ArcToon/ToonBase/TOON OUTLINE"
+
+        // Pupil: opaque base layer, drawn first (base list) with eye parallax refraction + matcap.
+        Pass
+        {
+            Name "ZZZ Eye Pupil"
+            Tags
+            {
+                "LightMode" = "ForwardCore"
+            }
+            Blend [_SrcBlend] [_DstBlend], One OneMinusSrcAlpha
+            ZTest LEqual
+            ZWrite [_ZWrite]
+            Cull [_Cull]
+
+            HLSLPROGRAM
+            #pragma target 4.5
+
+            #pragma multi_compile_instancing
+            #pragma multi_compile _ _PCF3X3 _PCF5X5 _PCF7X7 _POISSON_DISK _PCSS
+            #pragma multi_compile _ _CASCADE_BLEND_SOFT
+            #pragma multi_compile _ LIGHTMAP_ON
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
+
+            #pragma shader_feature _NORMAL_MAP
+
+            #pragma shader_feature _CLIPPING
+            #pragma shader_feature _RECEIVE_SHADOWS
+            #pragma shader_feature _RECEIVE_FRINGE_SHADOWS
+
+            #pragma shader_feature _METALLIC_MAP
+            #pragma shader_feature _ROUGHNESS_MAP
+            #pragma shader_feature _OCCLUSION_MAP
+
+            #pragma shader_feature _RAMP_SET
+
+            #pragma shader_feature_local _OVERRIDE_HIGHLIGHT
+            #pragma shader_feature_local _TANGENT_SHIFT_MAP
+
+            // pupil-only features
+            #pragma shader_feature_local _EYE_REFRACTION
+            #pragma shader_feature_local _MATCAP
+            #pragma shader_feature_local _MATCAP_SPH_NORMAL
+
+            #pragma shader_feature_local _ _REGION_ID_TEXTURE _REGION_ID_VERTEX_COLOR
+
+            #include "Packages/com.arctoon.render-pipeline/Shaders/ForwardCorePass.hlsl"
+
+            // Region discard: keep only the pupil region, then run the shared core fragment.
+            float4 ZZZEyePupilFragment(Varyings input, bool isFrontFace : SV_IsFrontFace) : SV_TARGET
+            {
+                UNITY_SETUP_INSTANCE_ID(input);
+                InputConfig config = GET_INPUT_CONFIG_WITH_REGION(input.positionCS_SS, input.baseUV.xy, input.vertexColor * 20);
+                clip(config.regionIndex == 1 ? 1.0 : -1.0);
+                return ForwardCoreFragment(input, isFrontFace);
+            }
+
+            #pragma vertex ForwardCoreVertex
+            #pragma fragment ZZZEyePupilFragment
+            ENDHLSL
+        }
+
+        // Spec: additive highlight layer, drawn after the base list (additive slot 1).
+        Pass
+        {
+            Name "ZZZ Eye Spec"
+            Tags
+            {
+                "LightMode" = "ForwardCoreAdditive1"
+            }
+            Blend One One
+            ZTest LEqual
+            ZWrite Off
+            Cull [_Cull]
+
+            HLSLPROGRAM
+            #pragma target 4.5
+
+            #pragma multi_compile_instancing
+            #pragma multi_compile _ _PCF3X3 _PCF5X5 _PCF7X7 _POISSON_DISK _PCSS
+            #pragma multi_compile _ _CASCADE_BLEND_SOFT
+            #pragma multi_compile _ LIGHTMAP_ON
+            #pragma multi_compile _ LOD_FADE_CROSSFADE
+
+            #pragma shader_feature _NORMAL_MAP
+
+            #pragma shader_feature _CLIPPING
+            #pragma shader_feature _RECEIVE_SHADOWS
+            #pragma shader_feature _RECEIVE_FRINGE_SHADOWS
+
+            #pragma shader_feature _METALLIC_MAP
+            #pragma shader_feature _ROUGHNESS_MAP
+            #pragma shader_feature _OCCLUSION_MAP
+
+            #pragma shader_feature _RAMP_SET
+
+            #pragma shader_feature_local _OVERRIDE_HIGHLIGHT
+            #pragma shader_feature_local _TANGENT_SHIFT_MAP
+
+            // spec-only features
+            #pragma shader_feature_local _SPEC_MASK
+            #pragma shader_feature_local _SPEC_PARALLAX
+            #pragma shader_feature_local _SDF_LIGHT_MAP
+            #pragma shader_feature_local _SDF_LIGHT_MAP_SPEC
+
+            #pragma shader_feature_local _ _REGION_ID_TEXTURE _REGION_ID_VERTEX_COLOR
+
+            #include "Packages/com.arctoon.render-pipeline/Shaders/ForwardCorePass.hlsl"
+
+            float4 ZZZEyeSpecFragment(Varyings input, bool isFrontFace : SV_IsFrontFace) : SV_TARGET
+            {
+                UNITY_SETUP_INSTANCE_ID(input);
+                InputConfig config = GET_INPUT_CONFIG_WITH_REGION(input.positionCS_SS, input.baseUV.xy, input.vertexColor * 20);
+                clip(config.regionIndex == 2 ? 1.0 : -1.0);
+                return float4(ForwardCoreFragment(input, isFrontFace).rgb * 1.6, 1.0);
+            }
+
+            #pragma vertex ForwardCoreVertex
+            #pragma fragment ZZZEyeSpecFragment
+            ENDHLSL
+        }
+
+        // Shadow: multiply-darken layer, drawn last (additive slot 2). Unlit sample of _BaseMap.
+        Pass
+        {
+            Name "ZZZ Eye Shadow"
+            Tags
+            {
+                "LightMode" = "ForwardCoreAdditive2"
+            }
+            Blend Zero SrcColor
+            ZTest LEqual
+            ZWrite Off
+            Cull [_Cull]
+
+            HLSLPROGRAM
+            #pragma target 4.5
+
+            #pragma multi_compile_instancing
+
+            #pragma shader_feature _CLIPPING
+
+            #pragma shader_feature_local _ _REGION_ID_TEXTURE _REGION_ID_VERTEX_COLOR
+
+            // reuse the core vertex + Varyings; write a minimal unlit fragment (no UnlitInterface,
+            // which would collide with SurfaceInterface's GetAlbedo already included above).
+            #include "Packages/com.arctoon.render-pipeline/Shaders/ForwardCorePass.hlsl"
+
+            float4 ZZZEyeShadowFragment(Varyings input) : SV_TARGET
+            {
+                UNITY_SETUP_INSTANCE_ID(input);
+                InputConfig config = GET_INPUT_CONFIG_WITH_REGION(input.positionCS_SS, input.baseUV.xy, input.vertexColor * 20);
+                clip(config.regionIndex == 0 ? 1.0 : -1.0);
+                float4 albedo = GetAlbedo(config);
+                #if defined(_CLIPPING)
+                clip(albedo.a - GetAlphaClip(config));
+                #endif
+                // Blend Zero SrcColor multiplies the framebuffer by this rgb -> darkens the eye.
+                return float4(albedo.rgb * 0.4, albedo.a);
+            }
+
+            #pragma vertex ForwardCoreVertex
+            #pragma fragment ZZZEyeShadowFragment
+            ENDHLSL
+        }
+
+        UsePass "ArcToon/ToonBase/TOON DEPTH ONLY"
+
+        UsePass "ArcToon/ToonBase/TOON DEPTH STENCIL"
+
+        UsePass "ArcToon/ToonBase/TOON SHADOW CASTER"
+
+        UsePass "ArcToon/ToonBase/TOON META"
+
+        UsePass "ArcToon/ToonBase/TOON GEOMETRY DEBUG"
+    }
+
+    CustomEditor "ArcToon.Editor.ShaderEditor.ArcToonBaseShaderGUI"
+}

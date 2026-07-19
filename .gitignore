@@ -1,0 +1,6 @@
+# Binary model sources - kept local only, too large for git
+*.fbx
+*.fbx.meta
+
+# OS
+.DS_Store
