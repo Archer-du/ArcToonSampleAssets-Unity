@@ -19,8 +19,10 @@ namespace ArcToonSampleAssets.Scripts.Studio.Camera
         private float height;
         private float fov;
 
-        // Focus pivot in world space (character root); the rig orbits pivot + up * height.
-        private Transform focus;
+        // Focus pivot in world space (the spawn root). The rig orbits pivot + up * height.
+        // Fixed to the spawn root rather than the character so pose adjustments and state
+        // switches never move the camera; only preset viewpoint changes do.
+        private Vector3 focusPosition;
 
         // Preset blend state.
         private bool blending;
@@ -49,7 +51,12 @@ namespace ArcToonSampleAssets.Scripts.Studio.Camera
         public float Yaw => yaw;
         public float Pitch => pitch;
 
-        public void SetFocus(Transform focusTarget) => focus = focusTarget;
+        // Sets the orbit pivot to the supplied transform's world position. Set once to the
+        // spawn root; the camera then stays independent of the character's transform.
+        public void SetFocus(Transform focusTarget)
+        {
+            if (focusTarget != null) focusPosition = focusTarget.position;
+        }
 
         // --- Manual controls (free-observe mode). Each cancels preset blending. ---
 
@@ -165,7 +172,7 @@ namespace ArcToonSampleAssets.Scripts.Studio.Camera
         {
             if (camera == null) return;
 
-            Vector3 pivot = (focus != null ? focus.position : Vector3.zero) + Vector3.up * height;
+            Vector3 pivot = focusPosition + Vector3.up * height;
             Quaternion rotation = Quaternion.Euler(pitch, yaw, 0f);
             Vector3 position = pivot - rotation * Vector3.forward * radius;
 

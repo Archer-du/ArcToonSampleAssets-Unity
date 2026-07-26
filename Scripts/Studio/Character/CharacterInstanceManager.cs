@@ -27,7 +27,7 @@ namespace ArcToonSampleAssets.Scripts.Studio.Character
             this.spawnRoot = spawnRoot;
         }
 
-        // Spawns the given profile's prefab and resets it to its first state's idle.
+        // Spawns the given profile's prefab and applies its first state (pose + idle).
         public void SwitchTo(CharacterProfile profile)
         {
             if (profile == null || profile.prefab == null) return;
@@ -36,8 +36,6 @@ namespace ArcToonSampleAssets.Scripts.Studio.Character
 
             CurrentProfile = profile;
             instance = Object.Instantiate(profile.prefab, spawnRoot);
-            instance.transform.localPosition = Vector3.zero;
-            instance.transform.localRotation = Quaternion.identity;
 
             var animator = instance.GetComponentInChildren<Animator>();
             if (animator != null)
@@ -51,7 +49,8 @@ namespace ArcToonSampleAssets.Scripts.Studio.Character
             SetState(0);
         }
 
-        // Switches behavioral state and starts looping that state's idle.
+        // Switches behavioral state: re-poses the character to this state's spawn-relative
+        // transform, then starts looping that state's idle.
         public void SetState(int index)
         {
             if (CurrentProfile == null || animationPlayer == null) return;
@@ -60,6 +59,13 @@ namespace ArcToonSampleAssets.Scripts.Studio.Character
             if (state == null) return;
 
             CurrentStateIndex = index;
+
+            if (instance != null)
+            {
+                instance.transform.localPosition = state.localPosition;
+                instance.transform.localRotation = Quaternion.Euler(state.localRotationEuler);
+            }
+
             animationPlayer.PlayIdle(state.idle);
         }
 

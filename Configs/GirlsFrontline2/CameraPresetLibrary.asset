@@ -30,4 +30,16 @@ MonoBehaviour:
     pitch: 0
     radius: 1.1659174
     height: 1.343769
-    fov: 16.564983
+    fov: 16
+  - name: Far
+    yaw: 0
+    pitch: 0
+    radius: 15
+    height: 1
+    fov: 16
+  - name: Preset 5
+    yaw: 0
+    pitch: 0
+    radius: 4.5350003
+    height: 0.59873694
+    fov: 20

@@ -32,5 +32,32 @@ namespace ArcToonSampleAssets.Scripts.Studio.Config
             if (index < 0 || index >= states.Count) return null;
             return states[index];
         }
+
+        // Writes the spawn-relative pose of a state (used by the studio's "Save pose to
+        // state" authoring action) and marks the asset dirty so the edit survives Play mode.
+        public void ApplyStatePose(int stateIndex, Vector3 position, Vector3 rotationEuler)
+        {
+            var state = GetState(stateIndex);
+            if (state == null) return;
+            state.localPosition = position;
+            state.localRotationEuler = rotationEuler;
+            MarkDirty();
+        }
+
+        public void MarkDirty()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(this);
+#endif
+        }
+
+        // Flushes in-memory edits to the asset file. Editor-only; a no-op in player builds.
+        public void SaveToDisk()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(this);
+            UnityEditor.AssetDatabase.SaveAssets();
+#endif
+        }
     }
 }

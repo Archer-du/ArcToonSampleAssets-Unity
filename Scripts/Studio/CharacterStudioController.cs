@@ -5,6 +5,7 @@ using ArcToonSampleAssets.Scripts.Studio.Config;
 using ArcToonSampleAssets.Scripts.Studio.GUISystem;
 using ArcToonSampleAssets.Scripts.Studio.Modes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ArcToonSampleAssets.Scripts.Studio
 {
@@ -14,7 +15,7 @@ namespace ArcToonSampleAssets.Scripts.Studio
     // on its own controls.
     //
     // Scene setup: place on a GameObject and assign the target camera, a spawn root, a
-    // CharacterCatalog and a CameraPresetLibrary. The camera should be a plain camera with no
+    // CharacterCatalog and a default CameraPresetLibrary. The camera should be a plain camera with no
     // CinemachineBrain, since the rig writes its transform directly.
     public class CharacterStudioController : MonoBehaviour
     {
@@ -25,9 +26,9 @@ namespace ArcToonSampleAssets.Scripts.Studio
 
         [Header("Configuration")]
         [SerializeField] private CharacterCatalog catalog;
-        [SerializeField] private CameraPresetLibrary presetLibrary;
+        [Tooltip("Camera preset library used when the active state has no library of its own assigned.")]
+        [SerializeField, FormerlySerializedAs("presetLibrary")] private CameraPresetLibrary defaultPresetLibrary;
         [SerializeField] private OrbitCameraSettings cameraSettings = new();
-        [SerializeField] private int initialPresetIndex;
 
         [Tooltip("Scale applied to all studio GUI text and panels. Raise on high-DPI displays.")]
         [SerializeField] private float guiScale = 1.5f;
@@ -72,6 +73,9 @@ namespace ArcToonSampleAssets.Scripts.Studio
             frameRate = new FrameRateOverlay();
             screenshot = new ScreenshotService(this);
             rig = new OrbitCameraRig(targetCamera, cameraSettings);
+            // The camera orbits the spawn root, not the character, so pose edits and state
+            // switches never move the camera; only preset viewpoint changes do.
+            rig.SetFocus(characterSpawnRoot);
             characters = new CharacterInstanceManager(characterSpawnRoot);
 
             context = new StudioContext
@@ -79,11 +83,10 @@ namespace ArcToonSampleAssets.Scripts.Studio
                 Controller = this,
                 CameraRig = rig,
                 Characters = characters,
-                Presets = presetLibrary,
+                DefaultPresetLibrary = defaultPresetLibrary,
                 Catalog = catalog,
                 Screenshot = screenshot,
-                Styles = styles,
-                CurrentPresetIndex = initialPresetIndex
+                Styles = styles
             };
 
             RegisterMode(new StateAdjustMode());
@@ -124,8 +127,6 @@ namespace ArcToonSampleAssets.Scripts.Studio
 
         private void LateUpdate()
         {
-            // Keep following the current character even if the instance was just respawned.
-            rig.SetFocus(characters.FocusRoot);
             rig.Tick(Time.deltaTime);
             rig.Apply();
         }
@@ -155,8 +156,7 @@ namespace ArcToonSampleAssets.Scripts.Studio
         public void SwitchCharacter(CharacterProfile profile)
         {
             characters.SwitchTo(profile);
-            rig.SetFocus(characters.FocusRoot);
-            context.ApplyPreset(context.CurrentPresetIndex, instant: true);
+            context.SyncToCurrentState(instant: true);
         }
 
         public void CaptureScreenshot()

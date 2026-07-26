@@ -16,3 +16,5 @@ MonoBehaviour:
   - gameName: GirlsFrontline2
     characters:
     - {fileID: 11400000, guid: 1581d4c82b7b945fb99ab002da3da6ea, type: 2}
+    - {fileID: 11400000, guid: 32fd02284534349759f026d06c388060, type: 2}
+    - {fileID: 11400000, guid: 7f7c5e6a150cb438f9d784790445b159, type: 2}

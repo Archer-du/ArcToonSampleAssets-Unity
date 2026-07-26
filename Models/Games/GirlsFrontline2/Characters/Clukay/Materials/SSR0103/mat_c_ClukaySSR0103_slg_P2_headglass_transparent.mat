@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_c_ClukaySSR0103_slg_P1_headglass
-  m_Shader: {fileID: 4800000, guid: fe7cc458bdb942f9a629995bef3c6590, type: 3}
+  m_Name: mat_c_ClukaySSR0103_slg_P2_headglass_transparent
+  m_Shader: {fileID: 4800000, guid: 90e6c9272cf448329be0043cac8b1dde, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -35,12 +35,16 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - DepthStencil
+  - SHADOWCASTER
+  - ForwardTransparentFrontFace
+  - ForwardTransparentBackFace
+  - ForwardTransparentDepthPeeling
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: eaf9efd06b8e24a488c39c36914f303c, type: 3}
+        m_Texture: {fileID: 2800000, guid: bd9751be5df74c344b28ae607446a77e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -68,7 +72,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 4759267920038e942a8df4951c337aba, type: 3}
+        m_Texture: {fileID: 2800000, guid: bd9751be5df74c344b28ae607446a77e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -76,15 +80,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicMap:
-        m_Texture: {fileID: 2800000, guid: 9eab1d90331b7fa4e80f6c9ee8ce6548, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0edaf90ca1652524fad2ae721aa0358b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 56153c1a4695d52458db4fbc25c3ba72, type: 3}
+        m_Texture: {fileID: 2800000, guid: 298a2b11dfe551046ba8214c01902d0e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 9eab1d90331b7fa4e80f6c9ee8ce6548, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0edaf90ca1652524fad2ae721aa0358b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -104,7 +108,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RoughnessMap:
-        m_Texture: {fileID: 2800000, guid: 9eab1d90331b7fa4e80f6c9ee8ce6548, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0edaf90ca1652524fad2ae721aa0358b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecMap:
@@ -120,26 +124,31 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints:
+    - _AttenuationModel: 0
     - _HighlightType: 0
     - _MetallicMapChannel: 1
     - _OcclusionMapChannel: 2
     - _RegionCount: 1
     - _RegionIDChannel: 0
     - _RoughnessMapChannel: 0
+    - _RoughnessSource: 0
     - _SmoothNormalDecoder: 0
     - _SmoothNormalSource: 1
     - _SpecularMaskChannel: 0
     - _SpecularMaskUV: 1
     - _TangentShiftMapUV: 1
+    - _TransparencyMode: 1
     - _WidthControlMode: 1
     - _WidthMaskChannel: 3
     m_Floats:
+    - _AlbedoSmoothness: 0.5
     - _AlphaControlOutlineWidth: 1
     - _BumpScale: 1
     - _Clipping: 0
-    - _Cull: 2
+    - _Cull: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _DiffuseOffset: 0
     - _DirectLightAttenOffset: 0.5
     - _DirectLightAttenSigmoidCenter: 0.5
     - _DirectLightAttenSigmoidSharp: 0.5
@@ -149,7 +158,7 @@ Material:
     - _DirectLightSpecSigmoidCenter: 0.5
     - _DirectLightSpecSigmoidSharp: 1
     - _DirectLightSpecSmooth: 0.5
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _Fresnel: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -175,14 +184,14 @@ Material:
     - _RimScale: 0.5
     - _RimWidth: 0.5
     - _Roughness: 1
-    - _Shadows: 0
+    - _Shadows: 2
     - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _SpecGloss: 0.2
     - _SpecMapToggle: 0
     - _SpecScale: 1
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
+    - _SrcBlend: 5
     - _Stencil: 1
     - _StencilEnabled: 0
     - _StencilReadMask: 3
@@ -191,9 +200,10 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 0.84705883}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.84705883}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FrontTint: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor0: {r: 0.1, g: 0.1, b: 0.1, a: 1}
     - _OutlineColor1: {r: 0.1, g: 0.1, b: 0.1, a: 1}
     - _OutlineColor2: {r: 0.1, g: 0.1, b: 0.1, a: 1}
@@ -202,5 +212,26 @@ Material:
     - _OutlineColor5: {r: 0.1, g: 0.1, b: 0.1, a: 1}
     - _OutlineColor6: {r: 0.1, g: 0.1, b: 0.1, a: 1}
     - _OutlineColor7: {r: 0.1, g: 0.1, b: 0.1, a: 1}
+    - _SSSTint: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadowColor0: {r: 0.5, g: 0.5, b: 0.54999995, a: 1}
+    - _ShadowColor1: {r: 0.5, g: 0.5, b: 0.54999995, a: 1}
+    - _ShadowColor2: {r: 0.5, g: 0.5, b: 0.54999995, a: 1}
+    - _ShadowColor3: {r: 0.5, g: 0.5, b: 0.54999995, a: 1}
+    - _ShadowColor4: {r: 0.5, g: 0.5, b: 0.54999995, a: 1}
+    - _ShadowColor5: {r: 0.5, g: 0.5, b: 0.54999995, a: 1}
+    - _ShadowColor6: {r: 0.5, g: 0.5, b: 0.54999995, a: 1}
+    - _ShadowColor7: {r: 0.5, g: 0.5, b: 0.54999995, a: 1}
+    - _ShadowFadeTint: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadowTint: {r: 1, g: 1, b: 1, a: 1}
+    - _ShallowColor0: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - _ShallowColor1: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - _ShallowColor2: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - _ShallowColor3: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - _ShallowColor4: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - _ShallowColor5: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - _ShallowColor6: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - _ShallowColor7: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - _ShallowFadeTint: {r: 1, g: 1, b: 1, a: 1}
+    - _ShallowTint: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

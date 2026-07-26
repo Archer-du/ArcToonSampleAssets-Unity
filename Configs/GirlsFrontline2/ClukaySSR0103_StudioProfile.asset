@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ec47e9aed2ff4a79a377d32dd0a0020, type: 3}
+  m_Name: ClukaySSR0103_StudioProfile
+  m_EditorClassIdentifier: 
+  displayName: ClukaySSR0103
+  prefab: {fileID: 4228508609115346138, guid: a717dd84135aa44059216c49aa52f222, type: 3}
+  focusHeight: 1
+  states:
+  - name: Barrack
+    idle: {fileID: 6007928805913179384, guid: f9e404991b376a446a349a36bd0c0ba7, type: 3}
+    actions:
+    - {fileID: 649637331423722583, guid: f9e404991b376a446a349a36bd0c0ba7, type: 3}
+    - {fileID: -6502285539626420965, guid: f9e404991b376a446a349a36bd0c0ba7, type: 3}
+    - {fileID: 5600176826844844084, guid: f9e404991b376a446a349a36bd0c0ba7, type: 3}
+    - {fileID: -2906353511512050898, guid: f9e404991b376a446a349a36bd0c0ba7, type: 3}
+    - {fileID: -509876583784111571, guid: f9e404991b376a446a349a36bd0c0ba7, type: 3}
+    - {fileID: 8907810390193561546, guid: f9e404991b376a446a349a36bd0c0ba7, type: 3}
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotationEuler: {x: 0, y: 0, z: 0}
+    presetLibrary: {fileID: 0}
+  - name: CCBG
+    idle: {fileID: -2049234731577948046, guid: 59a673e572fa1f54fa62d1f75c2ae00a, type: 3}
+    actions:
+    - {fileID: -1435916409971912644, guid: 59a673e572fa1f54fa62d1f75c2ae00a, type: 3}
+    - {fileID: 1973211910644699372, guid: 59a673e572fa1f54fa62d1f75c2ae00a, type: 3}
+    - {fileID: -3792907116931582755, guid: 59a673e572fa1f54fa62d1f75c2ae00a, type: 3}
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotationEuler: {x: 0, y: 0, z: 0}
+    presetLibrary: {fileID: 0}
+  - name: Bedroom_01
+    idle: {fileID: -1146990299046256373, guid: 5c970bc760cb24944abe9e3ae670c18c, type: 3}
+    actions:
+    - {fileID: -6571800666822282046, guid: 5c970bc760cb24944abe9e3ae670c18c, type: 3}
+    localPosition: {x: -1.5444741, y: 0, z: 1.4040674}
+    localRotationEuler: {x: -0, y: 160.7438, z: 0}
+    presetLibrary: {fileID: 0}

@@ -25,3 +25,18 @@ MonoBehaviour:
     - {fileID: -5245576209534896074, guid: 0fc93b2d8634348faa92a01972539072, type: 3}
     - {fileID: 4924662489360060935, guid: 0fc93b2d8634348faa92a01972539072, type: 3}
     - {fileID: -2334151308315022039, guid: 0fc93b2d8634348faa92a01972539072, type: 3}
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotationEuler: {x: -0, y: 0, z: 0}
+    presetLibrary: {fileID: 0}
+  - name: Lobby
+    idle: {fileID: -2774233898704082795, guid: c6ff2766861674ae4bd09095afcac87a, type: 3}
+    actions:
+    - {fileID: 7959933594070472272, guid: c6ff2766861674ae4bd09095afcac87a, type: 3}
+    - {fileID: 6597342247762362974, guid: c6ff2766861674ae4bd09095afcac87a, type: 3}
+    - {fileID: -610625248276880227, guid: c6ff2766861674ae4bd09095afcac87a, type: 3}
+    - {fileID: 3942735888730409955, guid: c6ff2766861674ae4bd09095afcac87a, type: 3}
+    - {fileID: 6245359115588959103, guid: c6ff2766861674ae4bd09095afcac87a, type: 3}
+    - {fileID: 9084996943370152513, guid: c6ff2766861674ae4bd09095afcac87a, type: 3}
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotationEuler: {x: 0, y: 0, z: 0}
+    presetLibrary: {fileID: 0}
