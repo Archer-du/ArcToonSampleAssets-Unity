@@ -1238,7 +1238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d54fd18786927c14e8868f606ba87486, type: 3}
       propertyPath: m_Name
-      value: c_ClukaySSR0101_slg_skin_model
+      value: ClukaySSR0101
       objectReference: {fileID: 0}
     - target: {fileID: 1016094754732329392, guid: d54fd18786927c14e8868f606ba87486, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1865,7 +1865,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d54fd18786927c14e8868f606ba87486, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6068463739422886131}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d54fd18786927c14e8868f606ba87486, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7881113767460710396}
   m_SourcePrefab: {fileID: 100100000, guid: d54fd18786927c14e8868f606ba87486, type: 3}
+--- !u!1 &198646185416669478 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1764677664065701771, guid: d54fd18786927c14e8868f606ba87486, type: 3}
+  m_PrefabInstance: {fileID: 1926660324288429741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1620652147093914620 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d54fd18786927c14e8868f606ba87486, type: 3}
@@ -1893,9 +1901,30 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7881113767460710396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620652147093914620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8bf9d522600461287c49c4281351a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - {fileID: 5741141436848978183}
+  - {fileID: 198646185416669478}
+  selectedIndex: 1
 --- !u!4 &4351101209202248079 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2800931260867360546, guid: d54fd18786927c14e8868f606ba87486, type: 3}
+  m_PrefabInstance: {fileID: 1926660324288429741}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5741141436848978183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6129538607962408874, guid: d54fd18786927c14e8868f606ba87486, type: 3}
   m_PrefabInstance: {fileID: 1926660324288429741}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6732993261629477159
