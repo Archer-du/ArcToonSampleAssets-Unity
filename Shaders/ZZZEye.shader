@@ -316,7 +316,7 @@ Shader "ArcToon/Sample/ZZZEye"
                 UNITY_SETUP_INSTANCE_ID(input);
                 InputConfig config = GET_INPUT_CONFIG_WITH_REGION(input.positionCS_SS, input.baseUV.xy, input.vertexColor * 20);
                 clip(config.regionIndex == 2 ? 1.0 : -1.0);
-                return float4(ForwardCoreFragment(input, isFrontFace).rgb * 1.6, 1.0);
+                return float4(ForwardCoreFragment(input, isFrontFace).rgb * 1.2, 1.0);
             }
 
             #pragma vertex ForwardCoreVertex
@@ -360,7 +360,7 @@ Shader "ArcToon/Sample/ZZZEye"
                 clip(albedo.a - GetAlphaClip(config));
                 #endif
                 // Blend Zero SrcColor multiplies the framebuffer by this rgb -> darkens the eye.
-                return float4(albedo.rgb * 0.4, albedo.a);
+                return float4(albedo.rgb * 0.3, albedo.a);
             }
 
             #pragma vertex ForwardCoreVertex

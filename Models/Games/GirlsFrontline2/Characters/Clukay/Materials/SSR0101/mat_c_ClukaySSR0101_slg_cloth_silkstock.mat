@@ -7,12 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_c_ClukaySSR0101_slg_cloth_part1
+  m_Name: mat_c_ClukaySSR0101_slg_cloth_silkstock
   m_Shader: {fileID: 4800000, guid: fe7cc458bdb942f9a629995bef3c6590, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _CLIPPING
   - _METALLIC_MAP
   - _NORMAL_MAP
   - _OCCLUSION_MAP
@@ -22,15 +21,12 @@ Material:
   - _SN_SRC_COLOR
   - _WIDTH_VERTEX_COLOR
   m_InvalidKeywords:
-  - _ALPHA_CONTROL_WIDTH
-  - _Clipping
   - _FRINGE_TRANSPARENT
   - _LIGHTINGDEBUGMODE_NONE
+  - _OWC_SRC_VERTCOLORA
   - _SHADOWS_ON
-  - _SMOOTHNORMALSOURCE_VERTEXCOLOR
   - _SPEC_MASK_UV1
   - _TANGENT_SHIFT_MAP_UV1
-  - _WIDTHCONTROLSOURCE_VERTEXCOLORALPHA
   - _WIDTH_VERTCOLORA
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
@@ -44,7 +40,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 7949b5c79f6535046ad0426a91b03ce9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 14b5c26a9c3e44b4ea1705cb03e9565a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -68,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MODSMaskMap:
-        m_Texture: {fileID: 2800000, guid: b508b0d33faab59479a6ab5589c77cbc, type: 3}
+        m_Texture: {fileID: 2800000, guid: d0ad3805493505640a8b7d21a71c5c41, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -80,15 +76,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicMap:
-        m_Texture: {fileID: 2800000, guid: be2a82b3c668b504a8d80da84504d324, type: 3}
+        m_Texture: {fileID: 2800000, guid: bf849704bece3714b8314cff3f44e061, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 07c829e2c96d0214c9df9dad3eb69ad0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4a1af1f8da680ed4ebbaa1c47f4cd4f8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: be2a82b3c668b504a8d80da84504d324, type: 3}
+        m_Texture: {fileID: 2800000, guid: bf849704bece3714b8314cff3f44e061, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -96,7 +92,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RMOMaskMap:
-        m_Texture: {fileID: 2800000, guid: be2a82b3c668b504a8d80da84504d324, type: 3}
+        m_Texture: {fileID: 2800000, guid: bf849704bece3714b8314cff3f44e061, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RampSet:
@@ -108,7 +104,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RoughnessMap:
-        m_Texture: {fileID: 2800000, guid: be2a82b3c668b504a8d80da84504d324, type: 3}
+        m_Texture: {fileID: 2800000, guid: bf849704bece3714b8314cff3f44e061, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecMap:
@@ -136,12 +132,11 @@ Material:
     - _SpecularMaskUV: 1
     - _TangentShiftMapUV: 1
     - _WidthControlMode: 1
-    - _WidthControlSource: 1
     - _WidthMaskChannel: 3
     m_Floats:
-    - _AlphaControlOutlineWidth: 1
+    - _AlphaControlOutlineWidth: 0
     - _BumpScale: 1
-    - _Clipping: 1
+    - _Clipping: 0
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1

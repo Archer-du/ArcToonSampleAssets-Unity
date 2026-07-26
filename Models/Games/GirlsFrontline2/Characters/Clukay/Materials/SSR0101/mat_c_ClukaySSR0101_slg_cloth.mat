@@ -7,12 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_c_ClukaySSR0101_slg_cloth_part2
+  m_Name: mat_c_ClukaySSR0101_slg_cloth
   m_Shader: {fileID: 4800000, guid: fe7cc458bdb942f9a629995bef3c6590, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _CLIPPING
   - _METALLIC_MAP
   - _NORMAL_MAP
   - _OCCLUSION_MAP
@@ -24,12 +23,9 @@ Material:
   m_InvalidKeywords:
   - _FRINGE_TRANSPARENT
   - _LIGHTINGDEBUGMODE_NONE
-  - _OWC_SRC_VERTCOLORA
   - _SHADOWS_ON
-  - _SMOOTHNORMALSOURCE_VERTEXCOLOR
   - _SPEC_MASK_UV1
   - _TANGENT_SHIFT_MAP_UV1
-  - _WIDTHCONTROLSOURCE_VERTEXCOLORALPHA
   - _WIDTH_VERTCOLORA
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
@@ -139,7 +135,7 @@ Material:
     m_Floats:
     - _AlphaControlOutlineWidth: 0
     - _BumpScale: 1
-    - _Clipping: 1
+    - _Clipping: 0
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
