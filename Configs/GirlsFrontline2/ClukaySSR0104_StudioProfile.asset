@@ -32,6 +32,6 @@ MonoBehaviour:
     idle: {fileID: 5181983798450081521, guid: fa7280759e2334e9c9163d7771b45b5c, type: 3}
     actions:
     - {fileID: 7944387171046600858, guid: fa7280759e2334e9c9163d7771b45b5c, type: 3}
-    localPosition: {x: 1.2173063, y: 0, z: 2.4346125}
+    localPosition: {x: 1.2173063, y: 0, z: 2.71496}
     localRotationEuler: {x: -0, y: 174.63463, z: 0}
     presetLibrary: {fileID: 0}

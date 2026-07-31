@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ec47e9aed2ff4a79a377d32dd0a0020, type: 3}
+  m_Name: ClukaySSR0105_StudioProfile
+  m_EditorClassIdentifier: 
+  displayName: ClukaySSR0105
+  prefab: {fileID: 6457523195511080263, guid: c6387d5872e2b498987d438061112f62, type: 3}
+  focusHeight: 1
+  states:
+  - name: Barrack
+    idle: {fileID: 8648817684361577860, guid: 4112e51988e7948cc8180d1414d72652, type: 3}
+    actions:
+    - {fileID: 242545581818326678, guid: 4112e51988e7948cc8180d1414d72652, type: 3}
+    - {fileID: 8178054537882539997, guid: 4112e51988e7948cc8180d1414d72652, type: 3}
+    - {fileID: 272371332779651681, guid: 4112e51988e7948cc8180d1414d72652, type: 3}
+    - {fileID: 6982370694080391433, guid: 4112e51988e7948cc8180d1414d72652, type: 3}
+    - {fileID: -9198726042753296593, guid: 4112e51988e7948cc8180d1414d72652, type: 3}
+    - {fileID: -3873611053461311565, guid: 4112e51988e7948cc8180d1414d72652, type: 3}
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotationEuler: {x: 0, y: 0, z: 0}
+    presetLibrary: {fileID: 0}
