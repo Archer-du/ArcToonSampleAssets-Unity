@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ec47e9aed2ff4a79a377d32dd0a0020, type: 3}
+  m_Name: Belle_Default_StudioProfile
+  m_EditorClassIdentifier: 
+  displayName: Belle_Default
+  prefab: {fileID: 2190793493853925687, guid: 7371cf40fee444de1b889b6b074fc564, type: 3}
+  focusHeight: 1
+  states:
+  - name: Galgame
+    idle: {fileID: 6246066591729861874, guid: 3ab610e9e6e1fdb408d0cc338e054431, type: 3}
+    actions:
+    - {fileID: -7892833448380426520, guid: 3ab610e9e6e1fdb408d0cc338e054431, type: 3}
+    - {fileID: -3792672824579598748, guid: 3ab610e9e6e1fdb408d0cc338e054431, type: 3}
+    - {fileID: -8148960179856524631, guid: 3ab610e9e6e1fdb408d0cc338e054431, type: 3}
+    - {fileID: -2480503494571574319, guid: 3ab610e9e6e1fdb408d0cc338e054431, type: 3}
+    localPosition: {x: 0, y: 0, z: 0}
+    localRotationEuler: {x: 0, y: 0, z: 0}
+    presetLibrary: {fileID: 0}

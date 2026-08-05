@@ -49,7 +49,7 @@ MonoBehaviour:
   targetCamera: {fileID: 2476526519722976375}
   characterSpawnRoot: {fileID: 6276530595444962655}
   catalog: {fileID: 11400000, guid: 6409aaee3ae5a4f65ad92dfe6bb84318, type: 2}
-  presetLibrary: {fileID: 11400000, guid: 3bab20eb8bbe34c4cbf6ff04716bd368, type: 2}
+  defaultPresetLibrary: {fileID: 11400000, guid: 3bab20eb8bbe34c4cbf6ff04716bd368, type: 2}
   cameraSettings:
     radiusMin: 1
     radiusMax: 12
@@ -64,8 +64,7 @@ MonoBehaviour:
     pitchMax: 85
     rotateSpeed: 2
     blendDuration: 0.4
-  initialPresetIndex: 0
-  guiScale: 1.6
+  guiScale: 0.9
   switchModeKey: 9
   screenshotKey: 283
   toggleGUIKey: 282
@@ -128,7 +127,7 @@ Transform:
   m_GameObject: {fileID: 2014332233937469276}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
