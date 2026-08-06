@@ -272,7 +272,7 @@ Shader "ArcToon/Sample/ZZZEye"
             {
                 "LightMode" = "ForwardCoreAdditive1"
             }
-            Blend One One
+            Blend SrcAlpha OneMinusSrcAlpha
             ZTest LEqual
             ZWrite Off
             Cull [_Cull]
@@ -314,9 +314,9 @@ Shader "ArcToon/Sample/ZZZEye"
             float4 ZZZEyeSpecFragment(Varyings input, bool isFrontFace : SV_IsFrontFace) : SV_TARGET
             {
                 UNITY_SETUP_INSTANCE_ID(input);
-                InputConfig config = GET_INPUT_CONFIG_WITH_REGION(input.positionCS_SS, input.baseUV.xy, input.vertexColor * 20);
-                clip(config.regionIndex == 2 ? 1.0 : -1.0);
-                return float4(ForwardCoreFragment(input, isFrontFace).rgb * 1.2, 1.0);
+                InputConfig config = GET_INPUT_CONFIG_WITH_REGION(input.positionCS_SS, input.baseUV.xy, input.vertexColor * 40);
+                clip((config.regionIndex == 3 || config.regionIndex == 4) ? 1.0 : -1.0);
+                return float4(ForwardCoreFragment(input, isFrontFace).rgb * 1.2, config.regionIndex == 3 ? 0.3 : 1.0);
             }
 
             #pragma vertex ForwardCoreVertex
